@@ -1,0 +1,28 @@
+a { color:#5D5D9E; } 
+a:visited { color:#5D5D9E; } 
+a:active { color:#5C615E; } 
+a:hover { color:#B2B3B4; } 
+html, body { min-height: 100% } 
+		a.wsp3bca5026{ color:#0000FF; text-decoration: underline} 
+		a.wsp3bca5026:visited{ color:#0000FF; text-decoration: underline} 
+		a.wsp3bca5026:active{ color:#0000FF; text-decoration: underline} 
+		a.wsp3bca5026:hover{ color:#4C4CFF; text-decoration: underline} 
+body { background-color:#E0E3FF; background: linear-gradient(to bottom, #F5EDF7, #E0E3FF); background-repeat: no-repeat; padding:0;  margin: 0; }
+.textstyle1 { text-align:left; }
+#container_33793bb5 { vertical-align: top; position:relative; display: inline-block; width:100%; min-height:108px; background:none;  }
+#container_33793bb5_padding { margin: 10px; display: block;  }
+#img_6e1c83d6 { vertical-align: bottom; position:relative; display: inline-block; width:300px; background:none; height:auto;  }
+.textstyle2 { text-align:center; }
+#container_20fbc2ca { box-sizing: border-box; vertical-align: top; position:relative; display: inline-block; width:36%; min-height:97px; background-color:#B2BFEA; background: linear-gradient(to bottom, #F0F2F9, #B2BFEA); border: 2px solid #545454;  }
+#container_20fbc2ca_padding { margin: 10px; display: block;  }
+.textstyle3 { text-align:justify; }
+.textstyle4 { font-size:12pt; font-family:Arial, Helvetica, sans-serif; color:#000000;  }
+#container_357edf1a { vertical-align: top; position:relative; display: inline-block; width:100%; min-height:150px; background:none;  }
+#container_357edf1a_padding { margin: 10px; display: block;  }
+#img_5aa64af4 { vertical-align: bottom; position:relative; display: inline-block; width:909px; background:none; height:auto;  }
+#button_1b0e3570 { box-sizing: border-box; border-radius: 9px; position:absolute; left:359px; top:206px; width:161px; height:55px; background-color:#970700; background: linear-gradient(to bottom,#970700, #430300 50%, #340200 50%, #250100); border: 2px solid #4F0300;  }
+.vcenterstyle1 { display: table; width: 100%; height: 100%; }
+.vcenterstyle2 { display: table-cell; vertical-align: middle; }
+.textstyle5 { font-size:12pt; font-family:Arial, Helvetica, sans-serif; color:#FFFFFF;  }
+.textstyle6 { text-align:right; }
+#img_2f30c3e2 { vertical-align: bottom; position:relative; display: inline-block; margin:80px 0px 0px 150px; width:500px; background:none; height:auto;  }
