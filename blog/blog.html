@@ -122,7 +122,7 @@ import { marked } from './marked.min.js';
 
 async function loadBlog() {
   const container = document.getElementById("blog-container");
-  container.innerHTML = "Loading...";
+  container.innerHTML = "loading...";
 
   const params = new URLSearchParams(window.location.search);
   const id = params.get("blog");
@@ -149,7 +149,7 @@ async function loadBlog() {
     return;
   }
 
-  const mdPath = `posts/${id}/${id}.md`;
+  const mdPath = `posts/${id}/post.md`;
 
   try {
     const response = await fetch(mdPath);
