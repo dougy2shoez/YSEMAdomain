@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta property="og:type" content="YSEMA.net">
+    <meta property="og:title" content="YSEMA.net">
+    <meta property="og:description" content="YSEMA is a video game made by dontluigi dougy 2shoez wallpaper 0 cookie THAT MAHDI and MANY other coolest person.">
+    <meta property="og:image" content="embed.png">
+    <meta name="theme-color" content="#E23F44">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <title>YSEMA.net</title>
+	
+<style>
+    @font-face {
+      font-family: 'ysema regular';
+      src: url('../Ysema-Regular.ttf'); 
+    }
+  </style>
+<style>
+
+  .opother { opacity: 0; z-index: 4; }
+
+  .op { opacity: 1; z-index: 5;cursor: pointer; }
+
+  .op:hover { opacity: 0; }
+
+  .op:hover + .opother { opacity: 1; }
+
+  .nav-wrapper { position: relative; width: 770px; margin: 0 auto; height: 50px; }
+  .bar-bg {
+    display: block;
+    width: 770px;
+  }
+  .btn-link {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+  }
+  .blog-post img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 15px auto;
+    border-radius: 4px;
+  }
+  .btn-link img { position: absolute; top: 0; left: 0; width: 100%; }
+  .opother { opacity: 0; z-index: 2; }
+  .op { opacity: 1; z-index: 3; }
+  .btn-link:hover .op { opacity: 0; }
+  .btn-link:hover .opother { opacity: 1; }
+  .home-btn  { left: 67px;  width: 75px; } 
+  .about-btn { left: 345px; width: 81px; } 
+  .blog-btn  { left: 625px; width: 70px; }
+
+  /* New Blog Layout Styles */
+  #blog-container {
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: left;
+    font-family: 'ysema regular', sans-serif;
+    color: #000000;
+    transform: translate(-25px,-30px);
+    padding: 0 20px;
+  }
+  .blog-post {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    margin-bottom: 0px;
+    border-radius: 8px;
+    font-size: 1.2em;
+  }
+  .post-timestamp {
+    font-size: 2em;
+    color: #41423b;
+    text-transform: uppercase;
+      transform: translate(-10px,-20px);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .blog-post h1, .blog-post h2 {
+    margin-top: 0;
+    color: #fff;
+  }
+</style>
+<script type="module" src="marked.min.js"></script>
+</head>
+<body>
+
+<header style="text-align: center;">
+  <img src="../webimg\logonet.png" alt="State cranberry", width="320", style="transform: translateX(-210px);" >
+</header>
+
+<div style="text-align: center; position: relative; transform: translateY(-3px);">
+  <div class="nav-wrapper">
+  <img src="../webimg/bar.png" class="bar-bg" style="transform: translateX(6.5px);"">
+
+  <a href="https://ysema.net/" class="btn-link home-btn">
+    <img src="../webimg/text/home_unsel.png" class="op">
+    <img src="../webimg/text/home_sel.png" class="opother">
+  </a>
+
+  <a href="https://ysema.net/about/" class="btn-link about-btn">
+    <img src="../webimg/text/about_unsel.png" class="op">
+    <img src="../webimg/text/about_sel.png" class="opother">
+  </a>
+
+  <a href="https://ysema.net/blog/" class="btn-link blog-btn">
+    <img src="../webimg/text/blog_sel.png" class="op">
+    <img src="../webimg/text/blog_sel.png" class="opother">
+  </a>
+</div>
+</div>
+
+<div style= "text-align: center;" >
+<img src="text.png" style="transform: translate(-237px, 10px); width: 285px;text-align: center; ">
+</div>
+
+<div style="text-align: center; transform: translate(0px,0px);">
+  <!--- BODY HERE!!!-->
+  <div id="blog-container">loading...</div>
+</div>
+<script type="module">
+import { marked } from './marked.min.js';
+
+async function loadBlog() {
+  const container = document.getElementById("blog-container");
+  container.innerHTML = "Loading...";
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("blog");
+
+  if (!id) {
+    container.innerHTML = `
+    <img src="landopiss.jpg" width = 100pxstyle="max-width: 80%; border-radius: 8px;">
+  `;
+    return;
+  }
+
+  let index;
+  try {
+    index = await fetch("posts/index.json").then(r => r.json());
+  } catch (err) {
+    container.innerHTML = "<p>:( </p>";
+    return;
+  }
+
+  const postEntry = index.find(p => p.id === id);
+
+  if (!postEntry) {
+    container.innerHTML = "<p>:( blog post not found, please notify dougy2shoez</p>";
+    return;
+  }
+
+  const mdPath = `posts/${id}/${id}.md`;
+
+  try {
+    const response = await fetch(mdPath);
+    if (!response.ok) throw new Error("Markdown not found");
+
+    let markdown = await response.text();
+
+    if (markdown.charCodeAt(0) === 0xFEFF) {
+      markdown = markdown.substring(1);
+    }
+    let fixed = "";
+    let i = 0;
+
+    while (i < markdown.length) {
+      const altStart = markdown.indexOf("![", i);
+
+      if (altStart === -1) {
+        fixed += markdown.slice(i);
+        break;
+      }
+
+      fixed += markdown.slice(i, altStart);
+
+      const altEnd = markdown.indexOf("]", altStart);
+      const srcStart = markdown.indexOf("(", altEnd) + 1;
+      const srcEnd = markdown.indexOf(")", srcStart);
+
+      const alt = markdown.slice(altStart + 2, altEnd);
+      const src = markdown.slice(srcStart, srcEnd);
+
+      let newSrc = src;
+      if (!src.startsWith("http") && !src.startsWith("posts/")) {
+        newSrc = `posts/${id}/${src}`;
+      }
+
+      fixed += `![${alt}](${newSrc})`;
+
+      i = srcEnd + 1;
+    }
+
+    markdown = fixed;
+
+    const html = marked.parse(markdown);
+
+    const date = new Date(postEntry.date);
+    const formattedDate = date.toLocaleString([], {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+    container.innerHTML = `
+      <article class="blog-post">
+        <div class="post-timestamp">${formattedDate}</div>
+        <div class="post-body">${html}</div>
+      </article>
+    `;
+  } catch (err) {
+    container.innerHTML = "<p>:(</p>";
+  }
+}
+
+loadBlog();
+</script>
+
+
+</body></html>

@@ -73,18 +73,73 @@
   </a>
 </div>
 </div>
-<div style="text-align: center; transform: translateY(25px);">
-<a href="2026329-0450/"> 
-3/29/2026 - 04:50 <!--it just so happened to be the same time at first but i changed it -->
+
+<div id="blog-wrapper" style="position: relative; width: 100%; height: auto;">
+
+  <div style="text-align: center;">
+    <img src="blog.png" style="transform: translate(-125px, 13px); width: 490px;">
+    <img src="text.png" style="transform: translate(-155px, -558px); width: 285px;">
+  </div>
+
+  <div id="post-list" style="text-align: center; transform: translate(65px, -558px);">
+    Loading posts...
+  </div>
+
+  <div id="blog-container" style="text-align:center; transform: translate(65px, -540px);"></div>
+
+</div>
+
+<script>
+async function loadPosts() {
+  const container = document.getElementById("post-list");
+
+  try {
+    const posts = await fetch("posts/index.json").then(r => r.json());
+
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    container.innerHTML = "";
+
+    const newest = posts[0]?.id;
+
+    for (const post of posts) {
+      const date = new Date(post.date);
+
+      const formatted =
+        `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()} - ` +
+        date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = `
+      <a href="blog.html?blog=${post.id}">
+        ${formatted}
+      </a>
+      ${post.id === newest ? '<img src="new.gif" style="transform: translateY(-2px);">' : ''}
+      <br>
+    `;
+
+
+      container.appendChild(wrapper);
+    }
+
+  } catch (err) {
+    container.innerHTML = "Could not load posts.";
+  }
+}
+
+loadPosts();
+</script>
+
+
+<!-- <a href="2026329-0450/"> 
+3/29/2026 - 04:50 
 </a><img src="new.gif" style="transform: translateY(-2px);"><br>
 <a href="2026314-0241">
 3/14/2026 - 02:41
-</a>
+</a> -->
 
 </div>
   
-<div><img src="../construct.gif" " width="100" style="padding: 340px 20px 20px 20px;"></div>
-
 <img alt="Hits" src="https://hits.sh/ysema.net.svg?label=hits&color=3c607a"/>
 
 
