@@ -12,8 +12,8 @@ i like that little guy on the screen hes called mashimaro
 
 but anyways im sorry were taking so long on the game... so you can have this
 
-<audio controls src="posts\260619-1703\level select.mp3"></audio>
-
+<audio controls src="posts/260619-1703/level%20select.mp3"></audio>
+<br>made by cookie :_)<br>
 contrary to what the filename is its not gonna be for a story menu select screen.. but for freeplay *ithink??* idfk ask @dontluigi (💀) he knows
 
 
