@@ -192,16 +192,16 @@ async function loadBlog() {
     markdown = fixed;
 
     const html = marked.parse(markdown);
-
-    const date = new Date(postEntry.date);
-    const formattedDate = date.toLocaleString("en-US", {
+    const raw = postEntry.date.trim();
+    const localDate = new Date(raw);
+    const formattedDate = localDate.toLocaleString("en-US", {
       timeZone: "America/Chicago",
       year: "numeric",
       month: "long",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit"
-});
+    });
 
     container.innerHTML = `
       <article class="blog-post">
