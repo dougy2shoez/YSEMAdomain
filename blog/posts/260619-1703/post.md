@@ -9,7 +9,8 @@ anyway heres the menu so far <br> <br>
 ![IMGGGG](lvp.png)
  <br> <br>
 i like that little guy on the screen hes called mashimaro
-
+![IMGGGG](masim.gif)
+ <br> <br>
 but anyways im sorry were taking so long on the game... so you can have this
 
 <audio controls src="posts/260619-1703/level%20select.mp3"></audio>
