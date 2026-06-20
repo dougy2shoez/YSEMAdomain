@@ -105,29 +105,31 @@ async function loadPosts() {
     const newest = posts[0]?.id;
 
     for (const post of posts) {
-      const [datePart, timePart] = post.date.split(" ");
-      const [year, month, day] = datePart.split("-").map(Number);
-      const [hour, minute] = timePart.split(":").map(Number);
+        let raw = post.date.trim().replace("T", " ");
+        const [datePart, timePart] = raw.split(" ");
+        if (!datePart || !timePart) continue;
 
-      const date = new Date(Date.UTC(year, month - 1, day, hour, minute));
-      const formatted =
-        `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} - ` +
-        date.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit"
-        });
-      const wrapper = document.createElement("div");
-      wrapper.innerHTML = `
-      <a href="blog.html?blog=${post.id}">
-        ${formatted}
-      </a>
-      ${post.id === newest ? '<img src="new.gif" style="transform: translateY(-2px);">' : ''}
+        const [year, month, day] = datePart.split("-").map(Number);
+        const [hour, minute] = timePart.split(":").map(Number);
+        const chicagoDate = new Date(year, month - 1, day, hour, minute);
+        const formatted =
+          `${chicagoDate.getMonth() + 1}/${chicagoDate.getDate()}/${chicagoDate.getFullYear()} - ` +
+          chicagoDate.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = `
+          <a href="blog.html?blog=${post.id}">
+            ${formatted}
+            ${post.id === newest ? '<img src="new.gif" style="transform: translateY(-2px);">' : ''}
       <br>
-    `;
+          </a>
+        `;
 
-
-      container.appendChild(wrapper);
-    }
+  container.appendChild(wrapper);
+}
 
   } catch (err) {
     container.innerHTML = ":(";
