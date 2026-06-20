@@ -105,12 +105,17 @@ async function loadPosts() {
     const newest = posts[0]?.id;
 
     for (const post of posts) {
-      const date = new Date(post.date);
+      const [datePart, timePart] = post.date.split(" ");
+      const [year, month, day] = datePart.split("-").map(Number);
+      const [hour, minute] = timePart.split(":").map(Number);
 
+      const date = new Date(Date.UTC(year, month - 1, day, hour, minute));
       const formatted =
-        `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()} - ` +
-        date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-
+        `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} - ` +
+        date.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit"
+        });
       const wrapper = document.createElement("div");
       wrapper.innerHTML = `
       <a href="blog.html?blog=${post.id}">
