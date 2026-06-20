@@ -3,7 +3,7 @@
 	<meta property="og:type" content="YSEMA.net">
     <meta property="og:title" content="YSEMA.net">
     <meta property="og:description" content="YSEMA is a video game made by dontluigi dougy 2shoez wallpaper 0 cookie THAT MAHDI and MANY other coolest person.">
-    <meta property="og:image" content="embed.png">
+    <meta property="og:image" content="../embed.png">
     <meta name="theme-color" content="#E23F44">
     <link rel="icon" type="image/svg+xml" href="../icon.svg">
     <title>YSEMA.net</title>
@@ -195,13 +195,14 @@ async function loadBlog() {
     const html = marked.parse(markdown);
 
     const date = new Date(postEntry.date);
-    const formattedDate = date.toLocaleString([], {
+    const formattedDate = date.toLocaleString("en-US", {
+      timeZone: "America/Chicago",
       year: "numeric",
       month: "long",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit"
-    });
+});
 
     container.innerHTML = `
       <article class="blog-post">
