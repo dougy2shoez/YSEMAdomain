@@ -4,7 +4,7 @@ import shutil
 from datetime import datetime
 
 # === CONFIG ===
-ROOT = r"C:\Users\dougy\Documents\buchi\YSEMAdomain"
+ROOT = r"C:\Users\dougy\Programming\YSEMAdomain"
 POSTS_DIR = os.path.join(ROOT, "blog", "posts")
 INDEX_FILE = os.path.join(POSTS_DIR, "index.json")
 
